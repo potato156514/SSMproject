@@ -43,6 +43,7 @@
       此时必须设置<mvc:annotation-driven/>解决问题
      -->
     <mvc:default-servlet-handler/>
+    <mvc:annotation-driven/>
 
     <!-- 开启mvc注解驱动 -->
     <mvc:annotation-driven>
