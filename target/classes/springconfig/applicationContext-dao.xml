@@ -33,7 +33,7 @@
     <!-- 配置Mapper层java类扫描 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!-- 设置Mapper扫描包 -->
-        <property name="basePackage" value="com.mysjz.mapper" />
+        <property name="basePackage" value="project.mapper" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
