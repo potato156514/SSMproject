@@ -24,9 +24,9 @@
         </div>
     </div>
     <div class="radio">
-    <input  type="radio" name="type" id="student" value="1" :="usertype"><span>学生</span>
-    <input type="radio" name="type" id="teacher" value="2" :="usertype"><span>老师</span>
-    <input type="radio" name="type" id="manager" value="0" :="usertype"><span>管理员</span>
+    <input  type="radio" name="type" id="student" value="1" v-model="usertype"><span>学生</span>
+    <input type="radio" name="type" id="teacher" value="2" v-model="usertype"><span>老师</span>
+    <input type="radio" name="type" id="manager" value="0" v-model="usertype"><span>管理员</span>
     </div>
 <!--    <input class="submit" type="submit" value="登录">-->
     <button class="submit" @click="login">登录</button>
