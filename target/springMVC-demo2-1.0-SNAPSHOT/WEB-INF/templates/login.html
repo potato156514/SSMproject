@@ -7,6 +7,8 @@
 <!--    <link rel="stylesheet" href="style.css">-->
 </head>
 <body>
+<div class="box">
+
 <form action="javascript:;">
 <!--<img th:src="@{/img/1487432089638.jpeg}" alt="歪比别比">-->
 <div id="login-box">
@@ -14,24 +16,27 @@
     <div class="from">
         <div class="item">
             <i class="fa fa-key" aria-hidden="true"></i>
-            <input type="text" placeholder="Username">
+            <input type="text" placeholder="Username" v-model="username">
         </div>
         <div class="item">
             <i class="fa fa-key" aria-hidden="true"></i>
-            <input type="password" placeholder="Password">
+            <input type="password" placeholder="Password" v-model="password">
         </div>
     </div>
     <div class="radio">
-    <input  type="radio" name="type" id="student" value="学生"><span>学生</span>
-    <input type="radio" name="type" id="teacher" value="老师"><span>老师</span>
-    <input type="radio" name="type" id="manager" value="管理员"><span>管理员</span>
+    <input  type="radio" name="type" id="student" value="1" :="usertype"><span>学生</span>
+    <input type="radio" name="type" id="teacher" value="2" :="usertype"><span>老师</span>
+    <input type="radio" name="type" id="manager" value="0" :="usertype"><span>管理员</span>
     </div>
-    <input class="submit" type="submit" value="登录">
+<!--    <input class="submit" type="submit" value="登录">-->
+    <button class="submit" @click="login">登录</button>
     <a th:href= "@{/resetpassword}">忘记密码？</a>
 
 </div>
 </form>
+</div>
 <script src="webjars/vue/3.2.20/dist/vue.global.js"></script>
+<script src="webjars/axios/0.24.0/dist/axios.js"></script>
 <script th:src="@{js/index.js}"></script>
 </body>
 </html>

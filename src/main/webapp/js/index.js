@@ -1,0 +1,21 @@
+Vue.createApp({
+    data(){
+        return{
+            username:'',
+            password:'',
+            usertype:''
+        }
+    },methods:{
+        login(){
+            axios
+                .post("/SSMproject/login",{
+                    username:this.username,
+                    password:this.password,
+                    usertype:this.usertype
+                })
+                .then(res=>{
+                    console.log(res)
+                })
+        }
+    }
+}).mount('.box')
