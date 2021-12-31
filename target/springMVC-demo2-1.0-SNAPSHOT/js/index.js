@@ -9,9 +9,9 @@ Vue.createApp({
         login(){
             axios
                 .post("/SSMproject/login",{
-                    username:this.username,
+                    name:this.username,
                     password:this.password,
-                    usertype:this.usertype
+                    type:this.usertype
                 })
                 .then(res=>{
                     console.log(res)

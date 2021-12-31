@@ -9,24 +9,24 @@
 <body>
 <div class="box">
 
-<form action="javascript:;">
+<form th:action="@{login}" method="post">
 <!--<img th:src="@{/img/1487432089638.jpeg}" alt="歪比别比">-->
 <div id="login-box">
     <h1>Login</h1>
     <div class="from">
         <div class="item">
             <i class="fa fa-key" aria-hidden="true"></i>
-            <input type="text" placeholder="Username" v-model="username">
+            <input type="text" placeholder="Username" name="name">
         </div>
         <div class="item">
             <i class="fa fa-key" aria-hidden="true"></i>
-            <input type="password" placeholder="Password" v-model="password">
+            <input type="password" placeholder="Password" name="password">
         </div>
     </div>
     <div class="radio">
-    <input  type="radio" name="type" id="student" value="1" v-model="usertype"><span>学生</span>
-    <input type="radio" name="type" id="teacher" value="2" v-model="usertype"><span>老师</span>
-    <input type="radio" name="type" id="manager" value="0" v-model="usertype"><span>管理员</span>
+    <input  type="radio" name="type" id="student" value="1" ><span>学生</span>
+    <input type="radio" name="type" id="teacher" value="2" ><span>老师</span>
+    <input type="radio" name="type" id="manager" value="3" ><span>管理员</span>
     </div>
 <!--    <input class="submit" type="submit" value="登录">-->
     <button class="submit" @click="login">登录</button>
@@ -34,9 +34,11 @@
 
 </div>
 </form>
+    <p>[[${erro}]]</p>
+    <p>[[${success}]]</p>
 </div>
 <script src="webjars/vue/3.2.20/dist/vue.global.js"></script>
 <script src="webjars/axios/0.24.0/dist/axios.js"></script>
-<script th:src="@{js/index.js}"></script>
+<!--<script th:src="@{js/index.js?v=0.0.1}"></script>-->
 </body>
 </html>
