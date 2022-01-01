@@ -22,26 +22,63 @@
             </div>
             <div class="body" id="body" style="border:1px solid black;">
                 <div class="chaxun" id="chaxun" style="border:1px solid black;"></div>
-                <div class="xianshi" id="xianshi"></div>
+                <div class="xianshi" id="xianshi" >
+                    <form th:if="!session.student==null">
+                        <div>
+                            <table border="1">
+                                <tr>
+                                    <th>学号</th>
+                                    <th>姓名</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr th:each="equipment:${session.student}">
+                                    <td>[[${equipment.peopleID}]]</td>
+                                    <td>[[${equipment.name}]]</td>
+                                    <td><a>删除</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </form>
+                    <form th:if="!session.teacher==null">
+                        <div>
+                            <table border="1">
+                                <tr>
+                                    <th>工号</th>
+                                    <th>姓名</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr th:each="equipment:${session.teacher}">
+                                    <td>[[${equipment.peopleID}]]</td>
+                                    <td>[[${equipment.name}]]</td>
+                                    <td><a>删除</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+    <script type="text/JavaScript" src="js/jquery.js"></script>
 <script  type="text/javascript">
     document.getElementById("stu").onclick=stu
+    document.getElementById("teacher").onclick=teachers
+    document.getElementById("classmanager").onclick=classmanagers
     function stu(){
         var title=document.getElementById("title")
+        var chaxun=document.getElementById("chaxun")
+        chaxun.innerHTML=""
         title.innerHTML="<input type='button' value='增加学生' id='addstu' onclick='addstu()'>" +
             "<input type='button' value='删除学生' id='delstu' onclick='delstu()'>"
 
     }
     function addstu(){
         var body=document.getElementById("chaxun")
-
-        body.innerHTML="<form method='post'><div> <input type='text' name='peopleID' placeholder='学生学号'> </div>" +
-            "<div> <input type='text' name='name' placeholder='学生名字'> </div>"+
-            "<div><input type='text' name='password' placeholder='密码'></div>"+
-            "<div><input type='text' name='phone' placeholder='学生手机号'></div>" +
-            "<div><input type='submit' value='提交'></div></from>"
+        body.innerHTML="<form method='post' th:action='@{addstu}'><div>学生学号  <input type='text' name='peopleID'> </div>" +
+            "<div>学生名字  <input type='text' name='name' placeholder='学生名字'> </div>"+
+            "<div>密码     <input type='text' name='password' placeholder='密码'></div>"+
+            "<div>学生手机号<input type='text' name='phone' placeholder='学生手机号'></div>" +
+            "<div><input type='submit' value='提交' @click='addstu'></div></from>"
 
     }
     function delstu(){
@@ -49,6 +86,39 @@
         // 在下列文本框中输入学生的信息，进行模糊查找学生（可输入学号，名字进行查找）
         body.innerHTML="<form method='post'><div><input type='text' name='peopleID'><input type='submit' value='根据学号进行查询'></div>" +
             "<div><input type='text' name='name'><input type='submit' value='根据学生姓名进行查询'></div></form>"
+    }
+    function teachers(){
+        var title=document.getElementById("title")
+        var chaxun=document.getElementById("chaxun")
+        chaxun.innerHTML=""
+        title.innerHTML="<input type='button' value='增加老师' id='addstu' onclick='addtea()'>" +
+            "<input type='button' value='删除老师' id='delstu' onclick='deltea()'>"
+    }
+    function addtea(){
+        var body=document.getElementById("chaxun")
+        body.innerHTML="<form method='post'><div>老师工号  <input type='text' name='peopleID' > </div>" +
+            "<div>老师名字  <input type='text' name='name' > </div>"+
+            "<div>密码     <input type='text' name='password' ></div>"+
+            "<div>老师手机号<input type='text' name='phone'></div>" +
+            "<div><input type='submit' value='提交'></div></from>"
+
+    }
+    function deltea(){
+        var body=document.getElementById("chaxun")
+        // 在下列文本框中输入学生的信息，进行模糊查找学生（可输入学号，名字进行查找）
+        body.innerHTML="<form method='post'><div><input type='text' name='peopleID'><input type='submit' value='根据工号进行查询'></div>" +
+            "<div><input type='text' name='name'><input type='submit' value='根据老师姓名进行查询'></div></form>"
+    }
+    function classmanagers(){
+        var title=document.getElementById("title")
+        var chaxun=document.getElementById("chaxun")
+        chaxun.innerHTML=""
+        title.innerHTML="<input type='button' value='处理课程申请请求' id='handleclass' onclick='handlecourse()'>" +
+            "<input type='button' value='删除课程' id='delstu' onclick='delclass()'>"
+    }
+    function handlecourse(){
+        var body=document.getElementById("chaxun")
+        var array = new Array();
     }
 </script>
 </body>

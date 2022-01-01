@@ -9,4 +9,5 @@ public interface UserDAO {
     public User selectUserBynameAndPassword(@Param("name") String name,@Param("password") String password,@Param("type")int type);
     User selectUserByNameAndPhone(@Param("name")String name,@Param("phone")String phone);
     boolean updateUserPassword(@Param("password")String password,@Param("id")int id);
+    boolean insertStudent(@Param("user")User user);
 }

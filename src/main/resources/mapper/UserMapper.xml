@@ -19,4 +19,7 @@
             set password=#{password}
             where id=#{id}
     </update>
+    <insert id="insertStudent">
+        insert into user(name,password,type,phone,peopleID) values(#{user.name},#{user.password},#{user.type},#{user.phone},#{user.peopleID})
+    </insert>
 </mapper>

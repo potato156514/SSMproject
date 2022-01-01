@@ -1,5 +1,6 @@
 package project.controller;
 
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,10 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import project.Beans.Shiyaninf;
 import project.Beans.User;
 import project.DAO.UserDAO;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class webcontroller {
@@ -40,14 +44,20 @@ public class webcontroller {
         }
         else {
             if (user1.getType()==1) {
-                session.setAttribute("user", user1);
+                session.setAttribute("user", user1.getId());
                 return "main";
             }
             else if (user1.getType()==2){
-                session.setAttribute("user", user1);
+                session.setAttribute("user", user1.getId());
                 return "teacher";
             }else {
-                session.setAttribute("user", user1);
+                ArrayList<User> stu = new ArrayList<>();
+                ArrayList<User> tea=new ArrayList<>();
+                ArrayList<Shiyaninf> shiyaninfs=new ArrayList<>();
+                session.setAttribute("user", user1.getId());
+                session.setAttribute("student",stu);
+                session.setAttribute("teacher",tea);
+                session.setAttribute("shiyaninfs",shiyaninfs);
                 return "admin";
             }
         }
@@ -71,5 +81,20 @@ public class webcontroller {
             return "login";
         }
 
+    }
+    @PostMapping("/addstu")
+    public String addstu(User user,HttpSession session,Model model) {
+        if (user.getName().equals("") || user.getPassword().equals("") || user.getPhone().equals("") || user.getPeopleID().equals("")) {
+            model.addAttribute("erro", "请完善信息");
+            return "admin";
+        }
+        user.setType(1);
+        if (!UserDAO.insertStudent(user)) {
+            model.addAttribute("erro", "插入学生信息失败");
+            return "admin";
+        } else {
+            model.addAttribute("success","插入成功");
+            return "admin";
+        }
     }
 }
