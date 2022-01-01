@@ -20,7 +20,7 @@ public class restController {
 //    }
     @PostMapping("/test")
     public boolean test(@RequestBody User user){
-        if(user == null) return false;
+        if(user == null || user.getName().equals("123")) return false;
         System.out.println(user.toString());
         return true;
 //        return "admins";
