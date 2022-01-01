@@ -1,0 +1,60 @@
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: 100% 100%;
+}
+input::-webkit-input-placeholder{
+    color: #ffffff;
+    font-size: 14px;
+}
+.main{
+    width: 1004px;
+    height: 804px;
+}
+.main .list{
+    width: 10%;
+    height: 100%;
+    float: left;
+}
+.main .add{
+    width: 900px;
+    height: 800px;
+    float: left;
+}
+.main .add .title{
+    width: 100%;
+    height: 20%;
+}
+.main .add .body{
+    width: 100%;
+    height: 80%;
+}
+#chaxun{
+    width: 100%;
+    height: 50%;
+}
+#xianshi{
+    width: 100%;
+    height: 50%;
+}
+#stu{
+    height: 100px;
+}
+#stu:hover{
+     background-color: #0483d4;
+ }
+#teacher{
+    height: 100px;
+}
+#teacher:hover{
+    background-color: #0483d4;
+}
+#classmanager{
+    height: 100px;
+}
+#classmanager:hover{
+    background-color: #0483d4;
+}

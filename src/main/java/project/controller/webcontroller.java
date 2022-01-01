@@ -44,8 +44,10 @@ public class webcontroller {
                 return "main";
             }
             else if (user1.getType()==2){
+                session.setAttribute("user", user1);
                 return "teacher";
             }else {
+                session.setAttribute("user", user1);
                 return "admin";
             }
         }
