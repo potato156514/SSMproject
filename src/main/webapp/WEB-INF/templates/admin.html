@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{css/admin.css?v=0.0.1}">
+<!--    <link rel="stylesheet" th:href="@{css/admin.css?v=0.0.2}">-->
 </head>
 <body>
     <div class="main" style="border:1px solid black;">
@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    <script type="text/JavaScript" src="js/jquery.js"></script>
+    <script src="webjars/axios/0.24.0/dist/axios.js"></script>
 <script  type="text/javascript">
     document.getElementById("stu").onclick=stu
     document.getElementById("teacher").onclick=teachers
@@ -74,13 +74,36 @@
     }
     function addstu(){
         var body=document.getElementById("chaxun")
-        body.innerHTML="<form method='post' th:action='@{addstu}'><div>学生学号  <input type='text' name='peopleID'> </div>" +
-            "<div>学生名字  <input type='text' name='name' placeholder='学生名字'> </div>"+
-            "<div>密码     <input type='text' name='password' placeholder='密码'></div>"+
-            "<div>学生手机号<input type='text' name='phone' placeholder='学生手机号'></div>" +
-            "<div><input type='submit' value='提交' @click='addstu'></div></from>"
+        body.innerHTML="<form method='post' action='javascript:add();'>" +
+            "<div>学生学号  <input type='text'  id='peopleID'> </div>" +
+            "<div>学生名字  <input type='text' id='name' placeholder='学生名字'> </div>"+
+            "<div>密码     <input type='text' id='password' placeholder='密码'></div>"+
+            "<div>学生手机号<input type='text' id='phone' placeholder='学生手机号'></div>" +
+            "<div><input type='submit' value='提交' ></div></from>"
+    }
+    function add(){
+        console.log("yes")
+        var peopleID = document.getElementById('peopleID').value
+        var name = document.getElementById('name').value
+        var password = document.getElementById('password').value
+        var phone = document.getElementById('phone').value
+        console.log(peopleID)
+        axios
+            .post("/SSMproject/test",{
+                peopleID:peopleID,
+                name:name,
+                password:password,
+                phone:phone
+            })
+            .then(result=>{
+                console.log(result)
+            })
+            .catch(err=>{
+                console.log(err)
+            })
 
     }
+
     function delstu(){
         var body=document.getElementById("chaxun")
         // 在下列文本框中输入学生的信息，进行模糊查找学生（可输入学号，名字进行查找）

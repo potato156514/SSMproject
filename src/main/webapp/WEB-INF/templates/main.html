@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+<!--    <meta charset="UTF-8">-->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <title>Title</title>
 </head>
 <body>
-
+<div class="app">
+    <ul>
+        <li>
+            <router-link to="/">学生</router-link>
+        </li>
+        <li>
+            <router-link to="/teacher">老师</router-link>
+        </li>
+        <li>
+            <router-link to="/admin">管理</router-link>
+        </li>
+    </ul>
+    <div class="view">
+        <router-view></router-view>
+    </div>
+</div>
+<!--<script src="https://unpkg.com/vue@3"></script>-->
+<!--<script src="webjars/vue/3.2.20/dist/vue.global.js"></script>-->
+<script src="webjars/vue/2.6.14/dist/vue.js"></script>
+<!--<script src="webjars/github-com-vuejs-vue/2.6.14/vue.js"></script>-->
+<script src="webjars/vue-router/3.5.3/dist/vue-router.js"></script>
+<!--<script src="https://unpkg.com/vue-router@4"></script>-->
+<script th:src="@{/js/main.js?v=0.0.2}" src="js/main.js"></script>
 </body>
 </html>

@@ -61,7 +61,41 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.0</version>
+            <version>2.12.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jdk8</artifactId>
+            <version>2.12.5</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-core</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.12.5</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-annotations</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-core</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.github.pagehelper</groupId>
@@ -89,6 +123,12 @@
             <groupId>org.webjars.npm</groupId>
             <artifactId>vue</artifactId>
             <version>3.2.20</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>babel__parser</artifactId>
+                    <groupId>org.webjars.npm</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -206,11 +246,26 @@
             <groupId>org.webjars.npm</groupId>
             <artifactId>vue</artifactId>
             <version>3.2.20</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>babel__parser</artifactId>
+                    <groupId>org.webjars.npm</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
+
         <dependency>
             <groupId>org.webjars.npm</groupId>
             <artifactId>axios</artifactId>
             <version>0.24.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.npm/vue-router -->
+<!--        <dependency>-->
+<!--            <groupId>org.webjars.npm</groupId>-->
+<!--            <artifactId>vue-router</artifactId>-->
+<!--            <version>3.5.3</version>-->
+<!--        </dependency>-->
+
     </dependencies>
 </project>

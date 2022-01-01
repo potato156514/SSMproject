@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <link rel="stylesheet" th:href="@{css/admin.css?v=0.0.1}">-->
+</head>
+<body>
+    <div class="main" style="border:1px solid black;">
+<!--        list用于存放要实现的功能，如学生注册和教师注册-->
+        <div class="list" style="border:1px solid black;">
+<!--            用于存放具体要实现的功能-->
+
+                <div  id="stu" @click="change(1)">学生管理</div>
+                <div  id="teacher" @click="change(2)">教师管理</div>
+                <div  id="classmanager" @click="change(3)">课程管理</div>
+        </div>
+<!--        add用于放具体操作页面-->
+        <div class="add" id="add" >
+            <div class="title" id="title" style="border:1px solid black;">
+
+            </div>
+            <div class="body" id="body" style="border:1px solid black;">
+                <div class="chaxun" id="chaxun" style="border:1px solid black;"></div>
+                <div class="xianshi" id="xianshi"></div>
+            </div>
+            <div v-if="state === 1">
+                <input type='button' value='增加学生' id='addstu' onclick='addstu()'>
+                <input type='button' value='删除学生' id='delstu' onclick='delstu()'>
+            </div>
+            <div v-if="state === 2">
+                <form method='post'>
+                    <div> <input type='text' name='peopleID' placeholder='学生学号'> </div>
+                    <div> <input type='text' name='name' placeholder='学生名字'> </div>
+                    <div><input type='text' name='password' placeholder='密码'></div>
+                    <div><input type='text' name='phone' placeholder='学生手机号'></div>
+                    <div><input type='submit' value='提交'></div>
+                </form>
+            </div>
+            <div v-if="state === 3">
+                <form method='post'>
+                    <div><input type='text' name='peopleID'><input type='submit' value='根据学号进行查询'></div>
+                    <div><input type='text' name='name'><input type='submit' value='根据学生姓名进行查询'></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="webjars/vue/3.2.20/dist/vue.global.js"></script>
+    <script th:src="@{/js/main.js}" ></script>
+                                                        <!--<script  type="text/javascript">-->
+<!--    document.getElementById("stu").onclick=stu-->
+<!--    function stu(){-->
+<!--        var title=document.getElementById("title")-->
+<!--        title.innerHTML="<input type='button' value='增加学生' id='addstu' onclick='addstu()'>" +-->
+<!--            "<input type='button' value='删除学生' id='delstu' onclick='delstu()'>"-->
+
+<!--    }-->
+<!--    function addstu(){-->
+<!--        var body=document.getElementById("chaxun")-->
+
+<!--        body.innerHTML="<form method='post'><div> <input type='text' name='peopleID' placeholder='学生学号'> </div>" +-->
+<!--            "<div> <input type='text' name='name' placeholder='学生名字'> </div>"+-->
+<!--            "<div><input type='text' name='password' placeholder='密码'></div>"+-->
+<!--            "<div><input type='text' name='phone' placeholder='学生手机号'></div>" +-->
+<!--            "<div><input type='submit' value='提交'></div></from>"-->
+
+<!--    }-->
+<!--    function delstu(){-->
+<!--        var body=document.getElementById("chaxun")-->
+<!--        // 在下列文本框中输入学生的信息，进行模糊查找学生（可输入学号，名字进行查找）-->
+<!--        body.innerHTML="<form method='post'><div><input type='text' name='peopleID'><input type='submit' value='根据学号进行查询'></div>" +-->
+<!--            "<div><input type='text' name='name'><input type='submit' value='根据学生姓名进行查询'></div></form>"-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>
