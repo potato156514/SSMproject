@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="app">
+    <ul>
+        <li @click="switchMode('选择实验')">选择实验</li>
+        <li @click="switchMode('退选实验')">退选实验</li>
+        <li @click="switchMode('查看成绩')">查看成绩</li>
+    </ul>
+    <div class="box">
+        <div v-if="mode === '选择实验'">
+            选择实验
+            <table border="1">
+                <thead>
+                <th>实验</th>
+                <th>开课教师</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>剩余名额</th>
+                <th>描述</th>
+                </thead>
+                <tr  v-for="(shiyan,index) in shiyanList">
+                    <td>{{shiyan.name}} </td>
+                    <td>{{shiyan.teacherName}}</td>
+                    <td>{{shiyan.startTime}}</td>
+                    <td>{{shiyan.endTime}}</td>
+                    <td>{{shiyan.stulimit-shiyan.stunum}}</td>
+                    <td>{{shiyan.state}}</td>
+                    <td><a href="javascript:;" @click="choose(shiyan.id)">选课</a></td>
+                </tr>
+            </table>
+        </div>
+        <div v-else-if="mode === '退选实验'">
+            退选实验
+        </div>
+        <div v-else>
+            查看成绩
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="webjars/axios/0.24.0/dist/axios.js"></script>
+<script th:src="@{/js/student.js}"></script>
+</body>
+</html>

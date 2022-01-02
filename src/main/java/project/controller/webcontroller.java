@@ -45,7 +45,7 @@ public class webcontroller {
         else {
             if (user1.getType()==1) {
                 session.setAttribute("user", user1.getId());
-                return "main";
+                return "student";
             }
             else if (user1.getType()==2){
                 session.setAttribute("user", user1.getId());

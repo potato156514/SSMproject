@@ -1,15 +1,27 @@
 package project.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import project.Beans.Shiyaninf;
 import project.Beans.User;
+import project.DAO.ShiyanDAO;
+import project.DAO.UserDAO;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 //@Controller
 public class restController {
+    @Autowired
+    private UserDAO userDAO;
+    @Autowired
+    private ShiyanDAO shiyanDAO;
 //    @PostMapping("/login")
 //    public Boolean handleLogin(@RequestBody User user){
 //        if(user != null) {
@@ -19,11 +31,30 @@ public class restController {
 //        return false;
 //    }
     @PostMapping("/test")
-    public boolean test(@RequestBody User user){
-        if(user == null || user.getName().equals("123")) return false;
+    public Map<String,Object> test(@RequestBody User user){
+        Map<String,Object> map = new HashMap<String,Object>();
+        if(user == null
+                || user.getName() == null
+                || user.getPassword() == null
+                || user.getPhone() == null
+                || user.getPeopleID() == null) {
+            map.put("res",false);
+            return map;
+        };
         System.out.println(user.toString());
-        return true;
+        map.put("res",true);
+        ArrayList<Integer> users = new ArrayList<>();
+        users.add(1);
+        users.add(3);
+        map.put("data",users);
+        return map;
+//        return userDAO.insertStudent(user);
+//        return true;
 //        return "admins";
+    }
+    @PostMapping("AllShiyan")
+    public ArrayList<Shiyaninf> handleAllShiyan(){
+        return shiyanDAO.selectAllShiyan();
     }
 
 }
