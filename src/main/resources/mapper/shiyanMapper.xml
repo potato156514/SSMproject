@@ -23,4 +23,9 @@
             and stushiyan.shiyan_id = shiyaninf.id
         order by grade
     </select>
+    <delete id="tuixuanById">
+        delete from stushiyan
+            where stu_id = #{stuId}
+                and shiyan_id = #{shiyanId}
+    </delete>
 </mapper>

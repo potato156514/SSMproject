@@ -38,6 +38,19 @@
         </div>
         <div v-else-if="mode === '退选实验'">
             退选实验
+            {{tuixuanRes}}
+            <table border="1">
+                <thead>
+                <th>实验</th>
+                <th>成绩</th>
+                <th>操作</th>
+                </thead>
+                <tr  v-for="(shiyan,index) in myShiyan">
+                    <td>{{shiyan.shiYanName}} </td>
+                    <td>{{shiyan.grade == 0?'尚无成绩':shiyan.grade}}</td>
+                    <td><a href="javascript:;" @click="tuixuan(shiyan.shiyanId)">退选</a></td>
+                </tr>
+            </table>
         </div>
         <div v-else>
             查看成绩

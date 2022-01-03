@@ -5,7 +5,8 @@ Vue.createApp({
             mode:'选择实验',
             shiyanList:{},
             myShiyan:{},
-            state:''
+            state:'',
+            tuixuanRes:''
         }
     },
     methods:{
@@ -18,6 +19,8 @@ Vue.createApp({
                 case '选择实验':
                     this.getShiyanList() ;break;
                 case '查看成绩':
+                    this.getMyShiyan();break;
+                case '退选实验':
                     this.getMyShiyan();break;
             }
         },
@@ -48,6 +51,19 @@ Vue.createApp({
                 .then(res=>{
                     console.log(res.data)
                     this.myShiyan = res.data
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+        },
+        tuixuan(shiyanID){
+            console.log(shiyanID)
+            axios
+                .post(`/SSMproject/tuixuan`,{id:shiyanID})
+                .then(res=>{
+                    console.log(res.data)
+                    this.tuixuanRes = res.data?"退选成功":"退选失败"
+                    this.getMyShiyan();
                 })
                 .catch(err=>{
                     console.log(err)

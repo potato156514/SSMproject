@@ -2,10 +2,7 @@ package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.Beans.MyShiYan;
 import project.Beans.Shiyaninf;
 import project.Beans.User;
@@ -69,7 +66,11 @@ public class restController {
     @PostMapping("getMyShiYan")
     public ArrayList<MyShiYan> selectMyShiYan(HttpSession session){
         return shiyanDAO.selectMyShiYan((Integer) session.getAttribute("user"));
-
+    }
+    @PostMapping("tuixuan")
+    public boolean tuixuanShiyan(@RequestBody Map<String,Integer> data,HttpSession session){
+        System.out.println("id:" + data.get("id") + "stuID:" + session.getAttribute("user"));
+        return shiyanDAO.tuixuanById((Integer) session.getAttribute("user"),data.get("id"));
     }
 
 }
