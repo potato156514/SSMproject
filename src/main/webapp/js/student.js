@@ -3,14 +3,22 @@ Vue.createApp({
         return {
             //选课，退选，查成绩
             mode:'选择实验',
-            shiyanList:{}
+            shiyanList:{},
+            myShiyan:{},
+            state:''
         }
     },
     methods:{
         switchMode(mode){
             this.mode = mode
-            if(this.mode === '选择实验'){
-                this.getShiyanList()
+            // if(this.mode === '选择实验'){
+            //     this.getShiyanList()
+            // }
+            switch (this.mode) {
+                case '选择实验':
+                    this.getShiyanList() ;break;
+                case '查看成绩':
+                    this.getMyShiyan();break;
             }
         },
         getShiyanList(){
@@ -19,6 +27,27 @@ Vue.createApp({
                 .then(res=>{
                     console.log(res.data)
                     this.shiyanList = res.data
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+        },
+        choose(shiyanId){
+            console.log(shiyanId)
+            axios
+                .post('/SSMproject/chooseShiyan',{id:shiyanId})
+                .then(res=> {
+                    if(res.data) this.state = '实验报名成功！'
+                    else this.state = '实验报名失败！'
+                })
+                .catch(err=>console.log(err))
+        },
+        getMyShiyan(){
+            axios
+                .post('/SSMproject/getMyShiYan')
+                .then(res=>{
+                    console.log(res.data)
+                    this.myShiyan = res.data
                 })
                 .catch(err=>{
                     console.log(err)

@@ -1,9 +1,13 @@
 package project.DAO;
 
+import org.apache.ibatis.annotations.Param;
+import project.Beans.MyShiYan;
 import project.Beans.Shiyaninf;
 
 import java.util.ArrayList;
 
 public interface ShiyanDAO {
-    public ArrayList<Shiyaninf> selectAllShiyan();
+    ArrayList<Shiyaninf> selectAllShiyan();
+    boolean  shiyanChoose(@Param("stuId") int stuId,@Param("shiyanId") int shiyanId);
+    ArrayList<MyShiYan> selectMyShiYan(@Param("stuId") int stuId);
 }

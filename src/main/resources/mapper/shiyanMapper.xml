@@ -6,4 +6,21 @@
     <select id="selectAllShiyan" resultType="project.Beans.Shiyaninf">
         select * from shiyaninf
     </select>
+    <insert id="shiyanChoose">
+        insert into stushiyan(stu_id,shiyan_id)
+            values(#{stuId},#{shiyanId})
+    </insert>
+    <select id="selectMyShiYan" resultType="project.Beans.MyShiYan">
+        select
+            stushiyan.id id,
+            stushiyan.stu_id stuId,
+            stushiyan.shiyan_id shiyanId,
+            stushiyan.grade grade,
+            shiyaninf.name shiYanName
+        from stushiyan,shiyaninf
+        where
+            stushiyan.stu_id = #{stuId}
+            and stushiyan.shiyan_id = shiyaninf.id
+        order by grade
+    </select>
 </mapper>

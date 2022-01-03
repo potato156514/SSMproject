@@ -9,11 +9,12 @@
     <ul>
         <li @click="switchMode('选择实验')">选择实验</li>
         <li @click="switchMode('退选实验')">退选实验</li>
-        <li @click="switchMode('查看成绩')">查看成绩</li>
+        <li @click="switchMode('查看成绩')">查看选课</li>
     </ul>
     <div class="box">
         <div v-if="mode === '选择实验'">
             选择实验
+            <p>{{state}}</p>
             <table border="1">
                 <thead>
                 <th>实验</th>
@@ -22,6 +23,7 @@
                 <th>结束时间</th>
                 <th>剩余名额</th>
                 <th>描述</th>
+                <th>操作</th>
                 </thead>
                 <tr  v-for="(shiyan,index) in shiyanList">
                     <td>{{shiyan.name}} </td>
@@ -39,11 +41,21 @@
         </div>
         <div v-else>
             查看成绩
+            <table border="1">
+                <thead>
+                <th>实验</th>
+                <th>成绩</th>
+                </thead>
+                <tr  v-for="(shiyan,index) in myShiyan">
+                    <td>{{shiyan.shiYanName}} </td>
+                    <td>{{shiyan.grade == 0?'尚无成绩':shiyan.grade}}</td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
 <script src="https://unpkg.com/vue@next"></script>
 <script src="webjars/axios/0.24.0/dist/axios.js"></script>
-<script th:src="@{/js/student.js}"></script>
+<script th:src="@{/js/student.js?v=0.0.1}"></script>
 </body>
 </html>

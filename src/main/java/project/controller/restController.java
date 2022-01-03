@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import project.Beans.MyShiYan;
 import project.Beans.Shiyaninf;
 import project.Beans.User;
 import project.DAO.ShiyanDAO;
 import project.DAO.UserDAO;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +56,20 @@ public class restController {
     }
     @PostMapping("AllShiyan")
     public ArrayList<Shiyaninf> handleAllShiyan(){
-        return shiyanDAO.selectAllShiyan();
+        ArrayList<Shiyaninf> shiyaninfs = shiyanDAO.selectAllShiyan();
+        return shiyaninfs;
+    }
+    @PostMapping("chooseShiyan")
+    public boolean handleChooseShiyan(@RequestBody Shiyaninf shiyaninf , HttpSession session){
+        System.out.println("shiyanId:" + shiyaninf.getId());
+        System.out.println("name:"+session.getAttribute("user"));
+        return shiyanDAO.shiyanChoose((Integer) session.getAttribute("user"),shiyaninf.getId());
+//        return true;
+    }
+    @PostMapping("getMyShiYan")
+    public ArrayList<MyShiYan> selectMyShiYan(HttpSession session){
+        return shiyanDAO.selectMyShiYan((Integer) session.getAttribute("user"));
+
     }
 
 }
