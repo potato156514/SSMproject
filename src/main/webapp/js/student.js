@@ -36,12 +36,13 @@ Vue.createApp({
                 })
         },
         choose(shiyanId){
-            console.log(shiyanId)
             axios
                 .post('/SSMproject/chooseShiyan',{id:shiyanId})
                 .then(res=> {
-                    if(res.data) this.state = '实验报名成功！'
+                    console.log(res.data)
+                    if(res.data === true) this.state = '实验报名成功！'
                     else this.state = '实验报名失败！或者您已经报名了此项实验'
+                    this.getShiyanList()
                 })
                 .catch(err=>console.log(err))
         },

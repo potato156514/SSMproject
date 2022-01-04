@@ -30,7 +30,18 @@
     </delete>
     <select id="checkIfExist" resultType="java.lang.Boolean">
         select count(1) from stushiyan
-            where stu_id = #{stuId}
-                and shiyan_id = #{shiyanId}
+            where stushiyan.stu_id = #{stuId}
+                and stushiyan.shiyan_id = #{shiyanId}
     </select>
+    <update id="addShiyYanRenSHu">
+        update shiyaninf
+            set stunum = stunum+1
+            where stunum &lt; stulimit
+                and id = #{ShiyanId}
+    </update>
+    <update id="jianShiYanRenSHu">
+        update shiyaninf
+        set stunum = stunum-1
+        where id = #{ShiyanId}
+    </update>
 </mapper>

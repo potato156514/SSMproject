@@ -11,6 +11,7 @@ import project.DAO.UserDAO;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +61,11 @@ public class restController {
     public boolean handleChooseShiyan(@RequestBody Shiyaninf shiyaninf , HttpSession session){
         System.out.println("shiyanId:" + shiyaninf.getId());
         System.out.println("name:"+session.getAttribute("user"));
-        if(!shiyanDAO.checkIfExist((Integer)session.getAttribute("user"),shiyaninf.getId())){
+        Date date = new Date();
+        System.out.println("date" + date.getTime());
+        if(!shiyanDAO.checkIfExist((Integer)session.getAttribute("user"),shiyaninf.getId())
+           && shiyanDAO.addShiyYanRenSHu(shiyaninf.getId())
+        ){
             return shiyanDAO.shiyanChoose((Integer) session.getAttribute("user"),shiyaninf.getId());
         }
         return false;
@@ -72,6 +77,7 @@ public class restController {
     @PostMapping("tuixuan")
     public boolean tuixuanShiyan(@RequestBody Map<String,Integer> data,HttpSession session){
         System.out.println("id:" + data.get("id") + "stuID:" + session.getAttribute("user"));
+        shiyanDAO.jianShiYanRenSHu(data.get("id"));
         return shiyanDAO.tuixuanById((Integer) session.getAttribute("user"),data.get("id"));
     }
 
