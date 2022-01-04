@@ -66,5 +66,7 @@
         <filter-name>encoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
+<error-page>
+    <location>/WEB-INF/templates/error.html</location>
+</error-page>
 </web-app>
