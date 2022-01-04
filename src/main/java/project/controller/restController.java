@@ -60,8 +60,10 @@ public class restController {
     public boolean handleChooseShiyan(@RequestBody Shiyaninf shiyaninf , HttpSession session){
         System.out.println("shiyanId:" + shiyaninf.getId());
         System.out.println("name:"+session.getAttribute("user"));
-        return shiyanDAO.shiyanChoose((Integer) session.getAttribute("user"),shiyaninf.getId());
-//        return true;
+        if(!shiyanDAO.checkIfExist((Integer)session.getAttribute("user"),shiyaninf.getId())){
+            return shiyanDAO.shiyanChoose((Integer) session.getAttribute("user"),shiyaninf.getId());
+        }
+        return false;
     }
     @PostMapping("getMyShiYan")
     public ArrayList<MyShiYan> selectMyShiYan(HttpSession session){

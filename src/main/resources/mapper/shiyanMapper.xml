@@ -7,7 +7,7 @@
         select * from shiyaninf
     </select>
     <insert id="shiyanChoose">
-        insert into stushiyan(stu_id,shiyan_id)
+        replace into stushiyan(stu_id,shiyan_id)
             values(#{stuId},#{shiyanId})
     </insert>
     <select id="selectMyShiYan" resultType="project.Beans.MyShiYan">
@@ -28,4 +28,9 @@
             where stu_id = #{stuId}
                 and shiyan_id = #{shiyanId}
     </delete>
+    <select id="checkIfExist" resultType="java.lang.Boolean">
+        select count(1) from stushiyan
+            where stu_id = #{stuId}
+                and shiyan_id = #{shiyanId}
+    </select>
 </mapper>
